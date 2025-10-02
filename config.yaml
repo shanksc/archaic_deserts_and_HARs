@@ -1,0 +1,20 @@
+# GWAS input files
+gwas_file: "../merged_maf_01_lmm_sex_covar_v2.assoc.sorted.txt"
+
+# Annotation files (https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz)
+gencode_gtf: "gencode.v49.annotation.gtf.gz" #https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/
+archaic_deserts: "skov_2020_regions_merged_no_X.bed" #https://github.com/yaenchen/NeanderthalIntrogressionMaps/blob/main/data/hg38/introgression_maps/maps_by_method/skov_2020/skov_2020_regions_merged.bed
+archaic_catalog: "NNaall_positions.tsv.gz" #https://figshare.com/articles/dataset/Variants_and_annotations_of_Neandertals/8184038?file=15253052
+gnomad_constraint: "gnomad.v4.1.constraint_metrics.tsv"
+cCRE_regions: "GRCh38-cCREs.ELS.bed" #https://screen.wenglab.org/downloads
+HAR_regions: "GSE180714_HARs.bed" #https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE180714
+
+# Analysis parameters
+p_threshold: 1.0e-5
+p_column: "p_wald"
+protein_coding_only: true
+gene_density_window: 10000000  # ±10Mb = 20Mb total window
+
+
+# Output directory
+output_dir: "results"

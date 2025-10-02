@@ -1,0 +1,28 @@
+HAR Enrichment Analysis
+
+Total genes: 20097
+Genes with HARs: 913
+Endurance genes: 37
+
+HAR OVERLAP
+
+Endurance genes with HARs: 7/37 (18.9%)
+Background genes with HARs: 906/20060 (4.5%)
+
+Fisher's exact test:
+  Odds ratio: 4.933
+  P-value: 1.216e-03
+
+TOP ENDURANCE GENES BY HAR COUNT
+
+gene_name   gene_id_short  har_count
+     DAB1 ENSG00000173406          6
+    STPG2 ENSG00000163116          2
+     MGMT ENSG00000170430          1
+     ERC1 ENSG00000082805          1
+   FRMD4B ENSG00000114541          1
+  GALNT10 ENSG00000164574          1
+    MCPH1 ENSG00000147316          1
+
+(7 total endurance genes with HARs)
+Full gene list saved to: results/final_results/har_enrichment_results_genes.tsv
