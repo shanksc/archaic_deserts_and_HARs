@@ -1,15 +1,15 @@
 Archaic Desert Enrichment
 
 Total protein-coding genes: 20096
-Endurance genes (GWAS): 37
+Endurance genes (GWAS): 21
 Genes in archaic deserts: 6605
 
 Raw Counts
-Endurance genes in deserts: 19/37 (51.4%)
-Background genes in deserts: 6586/20059 (32.8%)
+Endurance genes in deserts: 9/21 (42.9%)
+Background genes in deserts: 6596/20075 (32.9%)
 
-Fisher's exact test p-value: 2.187e-02
-Odds ratio: 2.159
+Fisher's exact test p-value: 3.557e-01
+Odds ratio: 1.533
 
 Logistic Regression
                            Logit Regression Results                           
@@ -17,18 +17,18 @@ Logistic Regression
 Dep. Variable:              in_desert   No. Observations:                20096
 Model:                          Logit   Df Residuals:                    20092
 Method:                           MLE   Df Model:                            3
-Date:                Thu, 02 Oct 2025   Pseudo R-squ.:                 0.02212
-Time:                        10:59:31   Log-Likelihood:                -12444.
+Date:                Thu, 08 Jan 2026   Pseudo R-squ.:                 0.02206
+Time:                        12:10:05   Log-Likelihood:                -12445.
 converged:                       True   LL-Null:                       -12725.
-Covariance Type:            nonrobust   LLR p-value:                1.134e-121
+Covariance Type:            nonrobust   LLR p-value:                2.430e-121
 ====================================================================================
                        coef    std err          z      P>|z|      [0.025      0.975]
 ------------------------------------------------------------------------------------
-const               -2.7273      0.191    -14.256      0.000      -3.102      -2.352
-is_endurance         0.4123      0.332      1.241      0.215      -0.239       1.064
+const               -2.7322      0.191    -14.285      0.000      -3.107      -2.357
+is_endurance         0.0364      0.447      0.081      0.935      -0.840       0.913
 log_gene_density    -0.1785      0.057     -3.123      0.002      -0.291      -0.066
-log_gene_length      0.5398      0.025     21.170      0.000       0.490       0.590
+log_gene_length      0.5411      0.025     21.229      0.000       0.491       0.591
 ====================================================================================
 
-Adjusted odds ratio: 1.510 (95% CI: 0.787-2.897)
-P-value for endurance enrichment: 2.148e-01
+Adjusted odds ratio: 1.037 (95% CI: 0.432-2.491)
+P-value for endurance enrichment: 9.351e-01

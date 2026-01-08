@@ -34,9 +34,16 @@ rule filter_gwas_by_pvalue:
     run:
         import pandas as pd
         df = pd.read_csv(input.gwas, sep=r"\s+", na_values=['-nan', 'nan', 'NA'])
-        filtered = df[df[params.pcol] < params.pval]
+        pcol = params.pcol
+        if pcol not in df.columns:
+            pcol_upper = pcol.upper()
+            if pcol_upper in df.columns:
+                pcol = pcol_upper
+            else:
+                raise ValueError(f"P-value column '{params.pcol}' not found. Available columns: {list(df.columns)}")
+        filtered = df[df[pcol] < params.pval]
         filtered.to_csv(output.filtered, sep="\t", index=False)
-        print(f"Filtered {len(filtered)} variants with p < {params.pval}")
+        print(f"Filtered {len(filtered)} variants with {pcol} < {params.pval}")
 
 rule convert_to_bed:
     input:
@@ -46,15 +53,26 @@ rule convert_to_bed:
     run:
         import pandas as pd
         df = pd.read_csv(input.filtered, sep="\t")
+        df.columns = df.columns.str.upper()
+        pcol = config['p_column'].upper()
+        if pcol not in df.columns:
+            raise ValueError(f"P-value column '{config['p_column']}' not found. Available columns: {list(df.columns)}")
+        #This should support GMMAT/GEMMA output 
+        chrom_col = 'CHR' if 'CHR' in df.columns else 'CHROM'
+        pos_col = 'POS' if 'POS' in df.columns else 'BP'
+        rsid_col = 'SNP' if 'SNP' in df.columns else 'RS'
+        ref_col = 'REF' if 'REF' in df.columns else 'ALLELE0'
+        alt_col = 'ALT' if 'ALT' in df.columns else 'ALLELE1'
+        beta_col = 'SCORE' if 'SCORE' in df.columns else ('BETA' if 'BETA' in df.columns else None)
         with open(output.bed, 'w') as f:
             for _, row in df.iterrows():
-                chrom = str(row['chr']) if not str(row['chr']).startswith('chr') else str(row['chr']).replace('chr', '')
-                pos = int(row['ps'])
-                rsid = row['rs']
-                allele1 = row['allele1']
-                allele0 = row['allele0']
-                beta = row['beta']
-                pval = row[config['p_column']]
+                chrom = str(row[chrom_col]) if not str(row[chrom_col]).startswith('chr') else str(row[chrom_col]).replace('chr', '')
+                pos = int(row[pos_col])
+                rsid = str(row[rsid_col])
+                allele0 = str(row[ref_col])
+                allele1 = str(row[alt_col])
+                beta = str(row[beta_col]) if beta_col else '0'
+                pval = row[pcol]
                 f.write(f"chr{chrom}\t{pos}\t{pos+1}\t{rsid}\t{beta}\t.\t{allele0}\t{allele1}\t{pval}\n")
 
 rule sort_bed:

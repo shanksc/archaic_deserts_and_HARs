@@ -1,25 +1,21 @@
 ## Dependencies 
 
 ```bash
-conda create -n archaic_analysis python=3.10
-conda activate archaic_analysis
-conda install -c bioconda -c conda-forge snakemake bedtools pandas scipy statsmodels scikit-learn
+mamba create -n archaic_analysis python=3.10
+mamba activate archaic_analysis
+mamba install -c bioconda -c conda-forge snakemake bedtools pandas scipy statsmodels scikit-learn
 ```
 
 ### Running pipeline 
 ```
-snakemake --use-conda -c 1
+snakemake -c1
 ```
 
 
 ## Configuration
 
-Edit `config.yaml` to modify:
-```yaml
-p_threshold: 1.0e-5              # GWAS p-value threshold
-gene_density_window: 5000000     # for gene density calculation
-protein_coding_only: true         # Filter non-coding genes
-```
+Edit `config.yaml` to modify parameters 
+
 
 ## Results
 

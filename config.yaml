@@ -1,5 +1,5 @@
 # GWAS input files
-gwas_file: "../merged_maf_01_lmm_sex_covar_v2.assoc.sorted.txt"
+gwas_file : "../../elite_GMMAT/results/elite_vs_ctrl/merged.txt"
 
 # Annotation files (https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz)
 gencode_gtf: "gencode.v49.annotation.gtf.gz" #https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/
@@ -11,9 +11,9 @@ HAR_regions: "GSE180714_HARs.bed" #https://www.ncbi.nlm.nih.gov/geo/query/acc.cg
 
 # Analysis parameters
 p_threshold: 1.0e-5
-p_column: "p_wald"
+p_column: "PVAL"
 protein_coding_only: true
-gene_density_window: 10000000  # ±10Mb = 20Mb total window
+gene_density_window: 10000000  # +-10Mb = 20Mb total window
 
 
 # Output directory
